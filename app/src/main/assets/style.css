@@ -1,0 +1,196 @@
+:root {
+    /* Cyberpunk Palette */
+    --bg-color: #050505;           /* Almost Black */
+    --card-bg: rgba(20, 20, 35, 0.7); /* Dark Glass */
+    --neon-cyan: #00f3ff;          /* Main Accent */
+    --neon-purple: #bc13fe;        /* Secondary Accent */
+    --neon-pink: #ff0055;          /* Danger/Highlight */
+    --text-primary: #ffffff;
+    --text-secondary: #8b9bb4;
+    --nav-bg: rgba(5, 5, 10, 0.95);
+}
+
+body {
+    background-color: var(--bg-color);
+    /* Subtle Grid Background for Tech feel */
+    background-image:
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+
+    color: var(--text-primary);
+    font-family: 'Rajdhani', sans-serif; /* Tech Font */
+    font-weight: 500;
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif; /* Futuristic Headers */
+    letter-spacing: 1px;
+}
+
+/* --- Utilities --- */
+.text-cyan { color: var(--neon-cyan) !important; }
+.text-accent { color: var(--neon-purple); letter-spacing: 1px; font-weight: bold; }
+.text-glow {
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+/* --- Sections Animation --- */
+.api-section { display: none; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.active-section { display: block; }
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* --- Cyber Cards --- */
+.cyber-card {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    border-color: rgba(0, 243, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
+}
+
+/* --- Cyber Buttons --- */
+.cyber-btn {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    border-radius: 5px; /* Boxy look */
+    padding: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    transition: 0.3s;
+    width: 100%;
+}
+
+.cyber-btn:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-cyan);
+}
+
+.cyber-btn-danger {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    border-radius: 5px;
+    padding: 8px;
+    font-family: 'Orbitron', sans-serif;
+    transition: 0.3s;
+}
+.cyber-btn-danger:hover {
+    background: var(--neon-pink);
+    color: white;
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.cyber-outline-btn {
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    border-radius: 50px;
+}
+
+/* --- Bottom Navigation (HUD Style) --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--nav-bg);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.nav-item {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+    flex: 1;
+    position: relative;
+}
+
+.nav-item.active {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+/* Active Indicator dot */
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.nav-icon {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+    filter: grayscale(1);
+    transition: 0.3s;
+}
+
+.nav-item.active .nav-icon {
+    filter: grayscale(0) drop-shadow(0 0 5px var(--neon-cyan));
+}
+
+/* --- Offcanvas Menu --- */
+.cyber-offcanvas {
+    background-color: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--neon-purple);
+    color: white;
+}
+
+.cyber-list-item {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary) !important;
+    font-family: 'Orbitron', sans-serif;
+    transition: 0.3s;
+}
+
+.cyber-list-item:hover {
+    color: var(--neon-cyan) !important;
+    padding-left: 25px; /* Slide effect */
+}
+
+.cyber-profile-box {
+    background: linear-gradient(135deg, rgba(188, 19, 254, 0.1), transparent);
+    border: 1px solid rgba(188, 19, 254, 0.3);
+}
